@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base theme to match your friend's dark portfolio */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #141414;
+  color: #e6e6e6;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
