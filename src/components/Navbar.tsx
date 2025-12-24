@@ -206,11 +206,12 @@ export default function Navbar() {
         {/* Left drawer panel */}
         <aside
           className={[
-            "absolute left-0 top-0 h-full w-[85%] max-w-sm",
-            "bg-gradient-to-b from-[#141414] to-[#0a0a0a] border-r border-white/10",
-            "transition-transform duration-500 ease-out",
-            open ? "translate-x-0" : "-translate-x-full",
-          ].join(" ")}
+    "absolute left-0 top-0 h-full w-[85%] max-w-sm",
+    "bg-gradient-to-b from-[#141414] to-[#0a0a0a] border-r border-white/10",
+    "transition-transform duration-500 ease-out",
+    "flex flex-col",                // ✅ IMPORTANT
+    open ? "translate-x-0" : "-translate-x-full",
+  ].join(" ")}
         >
           {/* Drawer header */}
           <div className="p-6 border-b border-white/10">
@@ -240,7 +241,7 @@ export default function Navbar() {
           </div>
 
           {/* Links */}
-          <div className="p-6 space-y-2">
+          <div className="p-6 space-y-2 flex-1 overflow-y-auto">
             {navItems.map((item) => (
               <DrawerLink
                 key={item.id}
@@ -285,6 +286,7 @@ export default function Navbar() {
               />
             </div>
           </div>
+          
 
           {/* Hire Me CTA in Drawer */}
           <div className="p-6 pt-0">

@@ -19,6 +19,7 @@ function App() {
         <Resume />
         <Contact />
         <Footer />
+
       </main>
     </div>
   );

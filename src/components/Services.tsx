@@ -18,7 +18,7 @@ function Services() {
   };
 
   return (
-    <section id="services" className="relative mx-auto max-w-6xl px-5 py-28">
+    <section id="services" className="relative mx-auto max-w-6xl px-5">
       <div className="text-center mb-20">
         <div className="inline-flex items-center gap-3 mb-3">
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#ff2d55]" />
@@ -131,8 +131,8 @@ function ServiceCard({ service, isExpanded, onToggle }: ServiceCardProps): JSX.E
         </div>
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-      <p className="text-white/70 mb-6">{service.description}</p>
+      <h3 className="text-lg md:text-xl font-bold text-white mb-3">{service.title}</h3>
+<p className="text-white/70 text-sm md:text-base mb-6">{service.description}</p>
 
       {/* Always visible features */}
       <div className="space-y-2 mb-6">

@@ -91,7 +91,7 @@ function Projects() {
   ];
 
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-5 py-28">
+    <section id="projects" className="relative mx-auto max-w-6xl px-5">
       <div className="mb-20 text-center">
         <div className="inline-flex items-center gap-3 mb-3">
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#ff2d55]" />
@@ -106,7 +106,7 @@ function Projects() {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
         ))}

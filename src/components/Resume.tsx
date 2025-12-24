@@ -69,7 +69,7 @@ function Resume() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="resume" className="relative mx-auto max-w-6xl px-5 py-28">
+    <section id="resume" className="relative mx-auto max-w-6xl px-5">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#ff2d55]/10 to-transparent rounded-full blur-3xl -z-10" />
       

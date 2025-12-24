@@ -3,6 +3,7 @@ import { FaNodeJs, FaReact } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
 import profileImage from '../assets/suventhini.png';
 
+
 function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center">
@@ -89,7 +90,9 @@ function Hero() {
             <div className="absolute -inset-4 bg-gradient-to-r from-[#ff2d55] to-purple-600 rounded-2xl blur-3xl opacity-20 animate-pulse" />
             
             {/* Main image container */}
-            <div className="relative rounded-2xl overflow-hidden border-2 border-white/10 w-[380px] h-[500px] group">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-white/10 
+                    w-[280px] h-[380px] md:w-[340px] md:h-[450px] lg:w-[380px] lg:h-[500px]
+                    group mx-auto">
               <img 
                 src={profileImage} 
                 alt="Suventhini Sivalingam" 
