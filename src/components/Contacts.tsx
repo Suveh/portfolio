@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent, type JSX } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import emailjs from '@emailjs/browser'; // Add this import
 
 interface FormData {
   name: string;
@@ -33,9 +34,66 @@ function Contact() {
     message: ''
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Form submitted! In production, connect to EmailJS/Formspree.");
+    setLoading(true);
+    setSuccess(false);
+
+    // ⚠️ PASTE YOUR ACTUAL EMAILJS IDs HERE:
+    const SERVICE_ID = 'service_czbw5tr';      // From Email Services
+    const TEMPLATE_ID = 'template_8tasdsg';    // From Email Templates
+    const PUBLIC_KEY = '9TI0WV2q48-e3ENaA';      // From Account > API Keys
+
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          // These must match your template variables {{name}}, {{time}}, {{message}}
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          subject: formData.subject,
+          message: formData.message,
+          time: new Date().toLocaleString('en-US', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+        },
+        PUBLIC_KEY
+      );
+
+      console.log('✅ Email sent successfully:', result);
+      
+      // Show success
+      setSuccess(true);
+      
+      // Reset form
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setSuccess(false), 5000);
+      
+    } catch (error) {
+      console.error('❌ Failed to send email:', error);
+      alert('❌ Failed to send message. Please email me directly at suventhinisivalingam02@gmail.com');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -68,10 +126,10 @@ function Contact() {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
               Suventhini Sivalingam
             </h3>
-<div className="inline-flex items-center gap-2 mt-2 px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-  <div className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-  <p className="text-cyan-300 text-sm font-medium">Available for work</p>
-</div>
+            <div className="inline-flex items-center gap-2 mt-2 px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+              <div className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+              <p className="text-cyan-300 text-sm font-medium">Available for work</p>
+            </div>
 
             <p className="mt-6 text-white/70 leading-relaxed">
               I'm passionate about creating exceptional digital experiences. Whether you need a complete application or technical consultation, I'm here to help.
@@ -122,6 +180,15 @@ function Contact() {
         {/* Right form */}
         <div className="relative">
           <div className="relative rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 p-8">
+            {/* Success message */}
+            {success && (
+              <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+                <p className="text-green-400 font-medium text-center">
+                  ✅ Message sent successfully! I'll get back to you soon.
+                </p>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <FloatingField 
@@ -175,9 +242,19 @@ function Contact() {
 
               <button
                 type="submit"
-                className="group relative w-full rounded-xl bg-gradient-to-r from-[#ff2d55] to-purple-600 py-4 font-semibold tracking-widest text-white transition-all hover:shadow-[0_10px_40px_rgba(255,45,85,0.3)]"
+                disabled={loading}
+                className="group relative w-full rounded-xl bg-gradient-to-r from-[#ff2d55] to-purple-600 py-4 font-semibold tracking-widest text-white transition-all hover:shadow-[0_10px_40px_rgba(255,45,85,0.3)] disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <span className="relative z-10">SEND MESSAGE</span>
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {loading ? (
+                    <>
+                      <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      SENDING...
+                    </>
+                  ) : (
+                    'SEND MESSAGE'
+                  )}
+                </span>
               </button>
             </form>
           </div>

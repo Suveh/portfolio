@@ -33,35 +33,59 @@ function Projects() {
       github: "https://github.com/Remi2121/Project"
     },
     {
-      title: "Cookify - Recipe Finder",
-      description: "Recipe discovery app built with Flutter that suggests recipes based on available ingredients. Includes step-by-step cooking instructions, shopping lists, and meal planning features.",
-      image: cookifyImage,
-      tags: ["Flutter", "API Integration", "UI/UX Design", "Mobile App"],
-      features: ["Ingredient-based search", "Recipe saving", "Shopping list", "Step-by-step guide"],
+         title: "Cookify - Recipe Finder",
+    description: "Flutter mobile app that helps users find recipes based on available ingredients. Features ingredient-based search, recipe saving, and meal planning for efficient cooking.",
+    image: cookifyImage,
+    tags: ["Flutter", "Dart", "Firebase", "REST APIs", "Mobile App"],
+    features: [
+      "Ingredient-based recipe search",
+      "User authentication with Firebase",
+      "Recipe saving & favorites",
+      "Shopping list generation",
+      "Step-by-step cooking guide"
+    ],
       github: "https://github.com/MathurakshiMahendrarajah/MobileApp"
     },
     {
-      title: "Trip Planning System",
-      description: "Web application for planning and organizing trips with itinerary management, budget tracking, and collaborative features for group travel planning.",
-      image: tripPlannerImage,
-      tags: ["React.js", "Tailwind CSS", "Firebase", "Web App"],
-      features: ["Itinerary creation", "Collaborative planning", "Map integration"],
+      title: "Trip Planner AI",
+    description: "Full-stack web application for AI-powered trip planning with itinerary management, Google Maps integration, and Gemini AI suggestions for personalized travel experiences.",
+    image: tripPlannerImage,
+    tags: ["React.js", "Firebase", "Google Places API", "Gemini AI", "Tailwind CSS"],
+    features: [
+      "AI-powered travel suggestions",
+      "Interactive itinerary management",
+      "Google Maps integration",
+      "User profiles & authentication",
+      "Real-time data with Firestore"
+    ],
       github: "https://github.com/Suveh/Trip-Planner-AI"
     },
     {
-      title: "Grocery Store Management",
-      description: "Full-stack web application for grocery inventory management with product catalog, shopping cart, and order processing system.",
-      image: groceryStoreImage,
-      tags: ["React.js", "Node.js", "Strapi", "Full Stack"],
-      features: ["Product management", "Shopping cart", "Order processing", "Admin dashboard"],
+      title: "Grocery Store E-commerce",
+    description: "Complete e-commerce platform with Next.js frontend, Strapi headless CMS backend, JWT authentication, shopping cart, and admin dashboard for product management.",
+    image: groceryStoreImage,
+    tags: ["Next.js", "Strapi CMS", "JWT Authentication", "Tailwind CSS", "E-commerce"],
+    features: [
+      "Full-stack e-commerce platform",
+      "JWT-based user authentication",
+      "Dynamic product catalog with filters",
+      "Admin dashboard for management",
+      "Responsive mobile-first design"
+    ],
       github: "hhttps://github.com/Suveh/Grocery_Store"
     },
     {
       title: "YouTube Trends Analyzer",
-      description: "Web application that analyzes YouTube video trends, displays popular content categories, and provides insights for content creators.",
-      image: youtubeTrendsImage,
-      tags: ["React.js", "YouTube API", "Data Visualization", "Web App"],
-      features: ["Trend analysis", "Category insights", "Data visualization", "API integration"],
+    description: "Streamlit web application that analyzes YouTube trending videos using YouTube Data API. Provides insights, data visualizations, and category analysis for content creators.",
+    image: youtubeTrendsImage,
+    tags: ["Python", "Streamlit", "YouTube Data API", "MySQL", "Plotly", "Data Analysis"],
+    features: [
+      "YouTube Data API integration",
+      "Interactive data visualizations",
+      "Trending video analysis",
+      "Category insights dashboard",
+      "MySQL database for storage"
+    ],
       github: "https://github.com/Suveh/Youtube_Trend_Analyzer"
     }
   ];

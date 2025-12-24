@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaHome, FaUser, FaBriefcase, FaFileAlt, FaEnvelope } from "react-icons/fa";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import profile from "../assets/profile.jpeg";
+import profile from "../assets/suventhini.png";
 
 function DrawerLink({
   href,

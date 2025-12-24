@@ -49,58 +49,58 @@ const servicesData: Service[] = [
   {
     icon: <FaMobileAlt />,
     title: "Mobile App Development",
-    description: "Building responsive mobile applications for Android with Flutter",
+    description: "Building cross-platform mobile applications with Flutter for iOS and Android and React Native for Android.",
     features: [
-      "Cross-platform development with Flutter",
+      "Cross-platform development with Flutter & Dart",
       "Responsive UI design for all screen sizes",
-      "State management with Provider/Riverpod",
-      "Native Android feature integration",
-      "App performance optimization"
+      "Firebase integration for authentication & database",
+      "REST API integration for external data",
+      "Native device feature implementation"
     ],
-    technologies: ["Flutter", "Dart", "Firebase", "Provider", "Android Studio"],
-    projects: ["Moodify - Wellness Tracker", "Cookify - Recipe Finder", "Student Attendance System"]
+    technologies: ["Flutter", "Dart", "Firebase", "REST APIs", "Git & GitHub", "React Native", "JavaScript", "Expo", "Android Studio"],
+    projects: ["Cookify - Recipe Finder","Moodify - Wellness Tracker"] // Only your actual mobile project
   },
   {
     icon: <FaGlobe />,
     title: "Full-Stack Web Development",
-    description: "Creating responsive web applications with modern frameworks",
+    description: "Building complete web applications with React, Next.js, and modern backends",
     features: [
-      "Frontend development with React.js",
+      "Frontend development with React.js & Next.js",
       "Responsive design with Tailwind CSS",
-      "Backend integration with Firebase/Strapi",
-      "REST API consumption and implementation",
-      "Database design and management"
+      "Backend development with Node.js & Express",
+      "Headless CMS integration with Strapi",
+      "Real-time database with Firebase Firestore"
     ],
-    technologies: ["React.js", "JavaScript", "Tailwind CSS", "Firebase", "Strapi"],
-    projects: ["Trip Planning System", "Grocery Store Management", "Restaurant Website"]
+    technologies: ["React.js", "Next.js", "Tailwind CSS", "Firebase", "Strapi", "Node.js"],
+    projects: ["Trip Planner AI", "Grocery Store E-commerce"] // Your actual web projects
   },
   {
     icon: <FaServer />,
-    title: "Backend & Database Development",
-    description: "Designing and implementing server-side logic and databases",
+    title: "Backend & API Development",
+    description: "Designing and implementing server-side logic, APIs, and databases",
     features: [
-      "Database design with MySQL & MongoDB",
       "API development with Node.js/Express",
-      "Data modeling and optimization",
-      "Authentication and authorization",
-      "Server deployment and maintenance"
+      "Database design with MySQL & Firebase",
+      "YouTube Data API integration & analysis",
+      "JWT-based authentication systems",
+      "Data modeling and optimization"
     ],
-    technologies: ["Node.js", "Express.js", "MySQL", "MongoDB", "Firebase"],
-    projects: ["YouTube Trends Analyzer", "Orphanage Management System", "E-commerce Backend"]
+    technologies: ["Node.js", "Express.js", "MySQL", "Firebase", "YouTube Data API", "Python"],
+    projects: ["YouTube Trends Analyzer", "Grocery Store Backend",]
   },
   {
     icon: <FaPalette />,
-    title: "UI/UX Design & Frontend Development",
-    description: "Designing user-friendly interfaces and implementing them with code",
+    title: "UI/UX & Data Visualization",
+    description: "Creating user-friendly interfaces and interactive data visualizations",
     features: [
-      "Wireframing and prototyping",
-      "User-centered design principles",
-      "Responsive layout implementation",
-      "Component-based architecture",
-      "Performance optimization"
+      "Interactive data visualization with Plotly",
+      "User-centered UI/UX design principles",
+      "Responsive component-based layouts",
+      "Real-time data dashboards",
+      "Clean and intuitive user interfaces"
     ],
-    technologies: ["Figma", "React.js", "Tailwind CSS", "JavaScript", "HTML/CSS"],
-    projects: ["Portfolio Websites", "Admin Dashboards", "E-commerce Interfaces"]
+    technologies: ["Plotly", "Streamlit", "React.js", "Tailwind CSS", "Figma", "Python"],
+    projects: ["YouTube Trends Analyzer Dashboard", "Grocery Store UI", "Trip Planner Interface"]
   }
 ];
 

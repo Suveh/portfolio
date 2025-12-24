@@ -1,5 +1,5 @@
+import type { JSX } from 'react';
 import { FaGithub, FaLinkedinIn, FaEnvelope, FaPhoneAlt, FaHeart } from 'react-icons/fa';
-import { type FormEvent, useState, type JSX } from 'react';
 
 interface SocialIconProps {
   href: string;
@@ -13,17 +13,8 @@ interface QuickLinkProps {
 }
 
 function Footer() {
-  const [email, setEmail] = useState<string>('');
-  const [subscribed, setSubscribed] = useState<boolean>(false);
 
-  const handleSubscribe = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
+
 
   const currentYear = new Date().getFullYear();
 
@@ -82,29 +73,9 @@ function Footer() {
             </a>
           </div>
 
-          {/* Newsletter */}
-          <div className="mt-8">
-            <h4 className="text-white font-bold text-lg mb-4">Stay Updated</h4>
-            <form onSubmit={handleSubscribe} className="flex gap-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="flex-1 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-[#ff2d55]"
-                required
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 rounded-lg bg-[#ff2d55] text-white font-semibold hover:bg-[#ff2d55]/80 transition"
-              >
-                {subscribed ? '✓' : 'Join'}
-              </button>
-            </form>
-            {subscribed && (
-              <p className="mt-2 text-green-400 text-sm">Thanks for subscribing!</p>
-            )}
-          </div>
+          
+
+
         </div>
       </div>
 

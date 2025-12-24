@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import type { JSX, ReactNode } from 'react';
 import { FaGraduationCap, FaBriefcase, FaAward, FaCode, FaTools, FaLanguage } from 'react-icons/fa';
 
-type TabType = 'education' | 'experience' | 'skills' | 'achievements' | 'languages';
+type TabType = 'education' | 'projects' | 'skills' | 'achievements' | 'languages';
 
 interface TabItem {
   id: TabType;
@@ -22,6 +22,7 @@ interface EducationItem {
   title: string;
   institution: string;
   description: string;
+  details: string[];
   tags: string[];
   color: string;
 }
@@ -42,12 +43,13 @@ interface SkillCategory {
   skills: Skill[];
 }
 
-interface ExperienceItem {
-  position: string;
-  company: string;
+interface ProjectItem {
+  name: string;
+  type: string;
   period: string;
-  description: string;
+  description: string[];
   technologies: string[];
+  status: string;
 }
 
 interface AchievementItem {
@@ -81,7 +83,7 @@ function Resume() {
           My <span className="bg-gradient-to-r from-[#ff2d55] to-purple-600 bg-clip-text text-transparent">Resume</span>
         </h2>
         <p className="mt-6 text-white/60 max-w-2xl mx-auto">
-          Education, skills, and experience that shape my development journey
+          Education, projects, and skills that shape my development journey
         </p>
       </div>
 
@@ -105,7 +107,7 @@ function Resume() {
       {/* Content with smooth transitions */}
       <div ref={containerRef} className="animate-fade-up">
         {activeTab === 'education' && <EducationTimeline />}
-        {activeTab === 'experience' && <ExperienceTimeline />}
+        {activeTab === 'projects' && <ProjectsShowcase />}
         {activeTab === 'skills' && <SkillsGrid />}
         {activeTab === 'achievements' && <AchievementsShowcase />}
         {activeTab === 'languages' && <LanguagesSection />}
@@ -116,7 +118,7 @@ function Resume() {
 
 const tabs: TabItem[] = [
   { id: 'education', label: 'Education', icon: <FaGraduationCap /> },
-  { id: 'experience', label: 'Experience', icon: <FaBriefcase /> },
+  { id: 'projects', label: 'Projects', icon: <FaBriefcase /> },
   { id: 'skills', label: 'Skills', icon: <FaCode /> },
   { id: 'languages', label: 'Languages', icon: <FaLanguage /> },
   { id: 'achievements', label: 'Achievements', icon: <FaAward /> },
@@ -146,27 +148,30 @@ function TabButton({ active, onClick, icon, children }: TabButtonProps): JSX.Ele
 function EducationTimeline(): JSX.Element {
   const educationData: EducationItem[] = [
     {
-      year: "2023 - Present",
-      title: "BSc in Computer Engineering",
-      institution: "University of Moratuwa",
-      description: "Pursuing degree in Computer Engineering with focus on software development, data structures, algorithms, and system design.",
-      tags: ["Current Student", "Software Engineering", "System Architecture"],
+      year: "Feb 2023 – Present",
+      title: "B.Sc. Engineering (Hons.) in Computer Engineering",
+      institution: "University of Sri Jayewardenepura, Nugegoda",
+      description: "Third-year Computer Engineering student focused on software development, algorithms, and AI integration",
+      details: ["GPA: 3.41/4.0", "Minoring in Data Management", "Focus on Full Stack Development and AI"],
+      tags: ["Software Engineering", "Data Structures", "OOP", "AI Integration"],
       color: "from-[#ff2d55] to-pink-600",
     },
     {
-      year: "2019 - 2022",
-      title: "G.C.E. Advanced Level (Science Stream)",
-      institution: "J/Victoria College, Jaffna",
-      description: "Completed Advanced Level education with focus on Mathematics and Science subjects.",
-      tags: ["Mathematics", "Physics", "Chemistry"],
+      year: "Sep 2019 – Feb 2022",
+      title: "GCE Advanced Level - Physical Science Stream",
+      institution: "J/Victoria College, Chulipuram, Jaffna",
+      description: "Specialized in Mathematics and Sciences with excellent academic performance",
+      details: ["Combined Mathematics: A", "Physics: B", "Chemistry: A"],
+      tags: ["Mathematics", "Physics", "Chemistry", "Analytical Skills"],
       color: "from-blue-500 to-cyan-400",
     },
     {
-      year: "2013 - 2018",
-      title: "G.C.E. Ordinary Level",
-      institution: "J/Victoria College, Jaffna",
-      description: "Completed secondary education.",
-      tags: ["Commerce", "ICT", "Drama"],
+      year: "2013 – 2018",
+      title: "GCE Ordinary Level",
+      institution: "J/Victoria College, Chulipuram, Jaffna",
+      description: "Foundation in core subjects with distinction in key areas",
+      details: ["Distinction in Mathematics and ICT", "Commerce & Drama"],
+      tags: ["ICT", "Commerce", "Drama", "Foundation"],
       color: "from-green-500 to-emerald-400",
     },
   ];
@@ -209,7 +214,13 @@ function TimelineItem({ item, index }: TimelineItemProps): JSX.Element {
             
             <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
             <p className="text-[#ff2d55] font-medium mb-3">{item.institution}</p>
-            <p className="text-white/70 mb-4">{item.description}</p>
+            <p className="text-white/70 mb-3">{item.description}</p>
+            
+            <div className="space-y-2 mb-4">
+              {item.details.map((detail, idx) => (
+                <p key={idx} className="text-white/80 text-sm">• {detail}</p>
+              ))}
+            </div>
             
             <div className="flex flex-wrap gap-2">
               {item.tags.map((tag, idx) => (
@@ -233,32 +244,35 @@ function SkillsGrid(): JSX.Element {
     {
       title: "Programming Languages",
       skills: [
+        { name: "Java", level: 85, color: "from-red-500 to-orange-500" },
+        { name: "C++", level: 80, color: "from-blue-500 to-indigo-600" },
+        { name: "Python", level: 75, color: "from-blue-400 to-cyan-500" },
         { name: "JavaScript", level: 85, color: "from-yellow-400 to-yellow-600" },
-        { name: "Dart", level: 80, color: "from-blue-400 to-cyan-500" },
-        { name: "Java", level: 75, color: "from-red-500 to-orange-500" },
-        { name: "Python", level: 70, color: "from-blue-500 to-indigo-500" },
-        { name: "HTML/CSS", level: 90, color: "from-orange-500 to-pink-500" },
+        { name: "SQL", level: 80, color: "from-blue-300 to-cyan-400" },
+        { name: "Dart", level: 80, color: "from-blue-400 to-cyan-300" },
       ],
     },
     {
-      title: "Frameworks & Libraries",
+      title: "Web & Mobile Development",
       skills: [
+        { name: "React.js", level: 85, color: "from-cyan-300 to-blue-400" },
         { name: "Flutter", level: 85, color: "from-cyan-400 to-blue-500" },
-        { name: "React.js", level: 80, color: "from-cyan-300 to-blue-400" },
         { name: "Node.js", level: 75, color: "from-green-500 to-emerald-400" },
-        { name: "Express.js", level: 50, color: "from-gray-400 to-gray-600" },
+        { name: "Next.js", level: 70, color: "from-gray-400 to-gray-600" },
+        { name: "HTML5/CSS3", level: 90, color: "from-orange-500 to-pink-500" },
         { name: "Tailwind CSS", level: 85, color: "from-teal-400 to-cyan-500" },
       ],
     },
     {
       title: "Tools & Databases",
       skills: [
-        { name: "Git & GitHub", level: 85, color: "from-orange-500 to-red-500" },
-        { name: "Firebase", level: 80, color: "from-yellow-500 to-orange-500" },
-        { name: "MySQL", level: 75, color: "from-blue-400 to-cyan-300" },
+        { name: "Git & GitHub", level: 90, color: "from-orange-500 to-red-500" },
+        { name: "Firebase", level: 85, color: "from-yellow-500 to-orange-500" },
+        { name: "MySQL", level: 85, color: "from-blue-400 to-cyan-300" },
         { name: "MongoDB", level: 70, color: "from-green-400 to-emerald-500" },
+        { name: "PostgreSQL", level: 65, color: "from-blue-500 to-indigo-500" },
+        { name: "VS Code", level: 95, color: "from-blue-400 to-indigo-500" },
         { name: "Figma", level: 75, color: "from-purple-500 to-pink-500" },
-        { name: "VS Code", level: 90, color: "from-blue-400 to-indigo-500" },
       ],
     },
   ];
@@ -298,52 +312,108 @@ function SkillsGrid(): JSX.Element {
   );
 }
 
-function ExperienceTimeline(): JSX.Element {
-  const experienceData: ExperienceItem[] = [
+function ProjectsShowcase(): JSX.Element {
+  const projects: ProjectItem[] = [
     {
-      position: "Academic Projects & Self-Learning",
-      company: "University & Personal Development",
-      period: "2022 - Present",
-      description: "Developing various software projects as part of academic curriculum and self-directed learning. Building practical applications to enhance technical skills and problem-solving abilities.",
-      technologies: ["Flutter", "React.js", "Firebase", "Node.js", "MySQL", "MongoDB"],
+      name: "Cookify",
+      type: "Software Engineering Project - Semester 4",
+      period: "Feb 2024 – Sept 2024",
+      description: [
+        "Mobile application that helps users find recipes based on available ingredients",
+        "Assists individuals in exploring new dishes and busy professionals in preparing quick meals",
+        "Reduces food waste by suggesting recipes dynamically based on selected or leftover ingredients",
+        "Helps students manage groceries efficiently"
+      ],
+      technologies: ["Flutter", "Dart", "Firebase", "REST APIs", "Git & GitHub"],
+      status: "Completed"
     },
     {
-      position: "Technical Skill Development",
-      company: "Online Courses & Practice",
-      period: "2022 - Present",
-      description: "Consistently learning new technologies through online platforms, building projects, and contributing to open-source. Focus on full-stack development and mobile app development.",
-      technologies: ["HTML5", "JavaScript", "CSS3", "SQL", "Python", "Git"],
+      name: "Grocery Store E-commerce Platform",
+      type: "Individual Project",
+      period: "Oct 2025 – Dec 2025",
+      description: [
+        "Full-stack grocery shopping web application with product browsing, cart management, and order placement",
+        "Implemented secure user authentication, shopping cart functionality, and order management",
+        "Designed responsive interface with product search, category filtering, and real-time updates",
+        "Built scalable backend with RESTful APIs and database relationships"
+      ],
+      technologies: ["Next.js", "React.js", "Strapi CMS", "PostgreSQL", "Tailwind CSS", "Git & GitHub"],
+      status: "Completed"
     },
+    {
+      name: "Moodify",
+      type: "Computer Engineering Project - Semester 5",
+      period: "June 2025 – Nov 2025",
+      description: [
+        "Mobile mental wellness application detecting user emotions using image-based facial analysis and voice emotion recognition",
+        "Engineered modular meditation systems (Stress, Focus, Sleep) with clean UI separation",
+        "Developed feature-rich offline audio playback system with real-time progress tracking",
+        "Implemented locally stored media assets and smooth navigation flows"
+      ],
+      technologies: ["React Native", "Expo", "Expo AV", "Expo Router", "React Hooks", "Animated API"],
+      status: "Completed"
+    },
+    {
+      name: "Trip Planner",
+      type: "Individual Project",
+      period: "Feb 2025 – May 2025",
+      description: [
+        "Web application for efficient trip planning with destination, accommodation, and activity organization",
+        "Provides real-time suggestions for routes, attractions, and travel options",
+        "Features interactive maps, itinerary management, and AI-based recommendations",
+        "Enhances user travel experience with personalized trip planning"
+      ],
+      technologies: ["React.js", "Firebase", "Git & GitHub", "Maps API"],
+      status: "Completed"
+    }
   ];
 
   return (
     <div className="space-y-8">
-      {experienceData.map((exp, idx) => (
+      {projects.map((project, idx) => (
         <div
           key={idx}
           className="group rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 p-8 hover:border-white/20 transition-all duration-300"
         >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            <div>
-              <h3 className="text-2xl font-bold text-white">{exp.position}</h3>
-              <p className="text-[#ff2d55] font-medium">{exp.company}</p>
-            </div>
-            <div className="px-4 py-2 rounded-full bg-[#ff2d55]/10 border border-[#ff2d55]/20">
-              <span className="text-sm font-medium text-white">{exp.period}</span>
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-2xl font-bold text-white">{project.name}</h3>
+                <span className="px-3 py-1 rounded-full bg-[#ff2d55]/10 border border-[#ff2d55]/20 text-sm text-[#ff2d55] font-medium">
+                  {project.status}
+                </span>
+              </div>
+              <p className="text-[#ff2d55] font-medium mb-1">{project.type}</p>
+              <div className="flex items-center gap-2 text-white/60 text-sm">
+                <span className="px-2 py-1 rounded bg-white/5">{project.period}</span>
+              </div>
             </div>
           </div>
           
-          <p className="text-white/70 mb-6 leading-relaxed">{exp.description}</p>
+          <div className="mb-6">
+            <h4 className="text-lg font-semibold text-white mb-3">Project Details:</h4>
+            <ul className="space-y-2">
+              {project.description.map((desc, i) => (
+                <li key={i} className="flex items-start gap-2 text-white/70">
+                  <span className="text-[#ff2d55] mt-1">•</span>
+                  <span>{desc}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
           
-          <div className="flex flex-wrap gap-3">
-            {exp.technologies.map((tech, techIdx) => (
-              <span
-                key={techIdx}
-                className="px-4 py-2 rounded-lg bg-black/30 border border-white/10 text-white/70 hover:border-[#ff2d55] hover:text-[#ff2d55] transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-3">Technologies Used:</h4>
+            <div className="flex flex-wrap gap-3">
+              {project.technologies.map((tech, techIdx) => (
+                <span
+                  key={techIdx}
+                  className="px-4 py-2 rounded-lg bg-black/30 border border-white/10 text-white/70 hover:border-[#ff2d55] hover:text-[#ff2d55] transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       ))}
@@ -355,23 +425,23 @@ function LanguagesSection(): JSX.Element {
   const languages: LanguageItem[] = [
     {
       language: "Tamil",
-      proficiency: "Native",
+      proficiency: "Native Speaker",
       level: 100,
     },
     {
-      language: "Sinhala",
-      proficiency: "Fluent",
-      level: 50,
+      language: "English",
+      proficiency: "Advanced",
+      level: 85,
     },
     {
-      language: "English",
-      proficiency: "Professional",
-      level: 85,
+      language: "Sinhala",
+      proficiency: "Conversational",
+      level: 50,
     },
   ];
 
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="grid gap-6 md:grid-cols-3">
       {languages.map((lang, idx) => (
         <div
           key={idx}
@@ -386,7 +456,7 @@ function LanguagesSection(): JSX.Element {
           
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-white/60">Proficiency</span>
+              <span className="text-white/60">Proficiency Level</span>
               <span className="text-[#ff2d55] font-medium">{lang.level}%</span>
             </div>
             <div className="h-2 rounded-full bg-white/10 overflow-hidden">
@@ -399,7 +469,7 @@ function LanguagesSection(): JSX.Element {
           
           <div className="mt-4 flex items-center gap-2 text-white/60 text-sm">
             <FaLanguage className="text-[#ff2d55]" />
-            <span>{lang.proficiency} level</span>
+            <span>Professional working proficiency</span>
           </div>
         </div>
       ))}
@@ -410,34 +480,34 @@ function LanguagesSection(): JSX.Element {
 function AchievementsShowcase(): JSX.Element {
   const achievementsData: AchievementItem[] = [
     {
-      icon: "📚",
-      title: "Academic Excellence",
-      description: "Successfully pursuing Computer Engineering at University of Moratuwa",
+      icon: "🎓",
+      title: "High Academic Achievement",
+      description: "GPA: 3.41/4.0 in Computer Engineering at University of Sri Jayewardenepura",
     },
     {
-      icon: "💻",
-      title: "Project Portfolio",
-      description: "Developed multiple full-stack and mobile applications",
+      icon: "📚",
+      title: "Certifications",
+      description: "HackerRank SQL (Basic & Intermediate), JavaScript, Coursera Git/GitHub, HTML/CSS/JavaScript",
+    },
+    {
+      icon: "💼",
+      title: "Leadership Experience",
+      description: "Assistant Senior Prefect at J/Victoria College, demonstrating leadership skills",
+    },
+    {
+      icon: "🎭",
+      title: "Cultural Activities",
+      description: "Active dancer in school and university cultural performances",
+    },
+    {
+      icon: "🤝",
+      title: "University Clubs",
+      description: "Member of Adventure Club and Career Guidance Society at university",
     },
     {
       icon: "🚀",
-      title: "Continuous Learning",
-      description: "Self-taught multiple programming languages and frameworks",
-    },
-    {
-      icon: "🔧",
-      title: "Technical Skills",
-      description: "Proficient in both frontend and backend development technologies",
-    },
-    {
-      icon: "🌐",
-      title: "Multilingual",
-      description: "Fluent in Tamil, Sinhala, and English",
-    },
-    {
-      icon: "🎯",
-      title: "Goal-Oriented",
-      description: "Focused on becoming a proficient full-stack developer",
+      title: "Project Portfolio",
+      description: "4+ completed software projects across web, mobile, and full-stack development",
     },
   ];
 

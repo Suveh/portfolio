@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { FaNodeJs, FaReact } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
-import profileImage from '../assets/profile.jpeg';
+import profileImage from '../assets/suventhini.png';
 
 function Hero() {
   return (
@@ -34,13 +34,15 @@ function Hero() {
           <div className="mt-6 text-2xl md:text-3xl font-semibold h-12">
             <TypeAnimation
               sequence={[
-                'Full Stack Developer',
+                'Software Engineer',
                 2000,
-                'UI/UX Designer',
+                'Full Stack Developer',
                 2000,
                 'Problem Solver',
                 2000,
                 'Tech Enthusiast',
+                2000,
+                'Continuous Learner',
                 2000,
               ]}
               wrapper="span"
