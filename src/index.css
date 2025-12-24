@@ -8,6 +8,12 @@ html {
   scroll-padding-top: 90px;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 .section {
   padding-top: 5rem;
   padding-bottom: 5rem;
