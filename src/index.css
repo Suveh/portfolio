@@ -11,30 +11,20 @@ html {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  height: 100%;
+  position: relative;
 }
 
-
-.section {
+/* Remove the conflicting .section class or rename it */
+/* .section {  COMMENT THIS OUT OR REMOVE IT
   padding-top: 5rem;
   padding-bottom: 5rem;
-}
+} */
 
-.pb-safe {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-
-@media (min-width: 768px) {
-  .section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+/* Safe area handling for modern browsers */
+@supports (padding: max(0px)) {
+  .pb-safe {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
 }
 
@@ -45,13 +35,44 @@ body {
   padding: 0;
 }
 
+
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+/* Better form handling on mobile */
+input, textarea, button {
+  font-size: 16px; /* Prevents iOS zoom */
+  -webkit-appearance: none; /* Remove iOS styling */
+  -moz-appearance: none;
+  appearance: none;
+   /* Reset for consistency */
+}
+
+/* Prevent pull-to-refresh overscroll on mobile */
+body {
+  overscroll-behavior-y: contain;
 }
 
 @layer base {
   a {
     color: inherit;
     text-decoration: none;
+  }
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Add extra padding at bottom for mobile browsers */
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+  
+  /* Make buttons more tappable */
+  button, [role="button"] {
+    min-height: 44px; /* Apple's recommended tap target size */
+    min-width: 44px;
   }
 }
