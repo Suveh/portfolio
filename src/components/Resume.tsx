@@ -152,7 +152,7 @@ function EducationTimeline(): JSX.Element {
       title: "B.Sc. Engineering (Hons.) in Computer Engineering",
       institution: "University of Sri Jayewardenepura, Nugegoda",
       description: "Third-year Computer Engineering student focused on software development, algorithms, and AI integration",
-      details: ["GPA: 3.41/4.0", "Minoring in Data Management", "Focus on Full Stack Development and AI"],
+      details: ["GPA: 3.35/4.0", "Minoring in Data Management", "Focus on Full Stack Development and AI"],
       tags: ["Software Engineering", "Data Structures", "OOP", "AI Integration"],
       color: "from-[#ff2d55] to-pink-600",
     },
